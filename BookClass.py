@@ -6,7 +6,7 @@ import operator
 import sqlite3
 import os
 
-# Hello
+#
 db_books = Books
 
 
