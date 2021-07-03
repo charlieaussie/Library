@@ -13,4 +13,4 @@ VALUES (1998,"Charlieaussie98@gmail.com","CharlieAussie98","Aussie98" )
 db.commit()
 cursor.execute("SELECT * FROM account")
 print(cursor.fetchall())
-## hello d
+## hello dtt
