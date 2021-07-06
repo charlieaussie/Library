@@ -26,7 +26,7 @@ def author_list(current_book):
     print("")
     temp = []
     author_dic = author_dictionaries
-    res = dict()
+    res = {}
     res_book = {key: author_dic[key] for key in author_dic.keys()
                 & {lord_rings.title, lord_rings.author}}
     # printing result
@@ -63,19 +63,18 @@ def check_discount(current_book):
         discount_price = True
         time.sleep(1)
         print("Current price is now of", current_book.price)
-        loan_book_price_order(current_book)
     else:
         print("Your book has no discount")
         discount_price = False
-        loan_book_price_order(current_book)
+
+    loan_book_price_order(current_book)
 
 
 def loan_book(current_book):
     current_book.loan = False
     choice = input("Are you sure you want to loan (y/n)")
-    f = open("bookfile2.txt", "a")
-    f.write(current_book.title)
-    f.close()
+    with open("bookfile2.txt", "a") as f:
+        f.write(current_book.title)
     if choice.lower() == "y":
         print("You have successfully loaned ", current_book.title)
         check_discount(current_book)
@@ -132,9 +131,8 @@ def return_books(current_book):
 
 def open_saved_file_books(current_book):
     if current_book.loan == False:
-        f = open("bookfile2.txt")
-        print("Loaned Book:", f.read())
-        f.close()
+        with open("bookfile2.txt") as f:
+            print("Loaned Book:", f.read())
         menu(current_book)
     elif current_book.loan:
         print("You have no books you are loaned for")
